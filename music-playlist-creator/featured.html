@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Music Playlist Explorer: Featured</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+       <h1>Music Playlist Explorer: Featured Playlist</h1>
+        <nav>
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='featured.html'">Featured</button>
+        </nav>
+    </header>
+
+    <main> 
+        <div class="featuredPlaylist">
+            <div class="featured-content">
+                <h1 id="featuredTitle"></h1>
+                <img id="featuredImage" src="" alt="Playlist Cover">
+                <p id="featuredAuthor"></p>
+                <ul id="featuredSongList"></ul>
+                <span id="featuredLikeButton" class="likeButton"> Like </span>
+                <span id="featuredLikeCount" class="likeCount">0 Likes</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <!-- Your footer content here -->
+    </footer>
+    <script src="data/data.js"></script>
+    <script type="module" src="featured.js"></script>
+</body>
+</html>

@@ -98,7 +98,7 @@ footer {
 }
 .modal-content {
   background-color: #ffffff;
-  margin: 10% auto; /* vertical space from top, horizontally centered */
+  margin: 10% auto;
   padding: 20px;
   border-radius: 10px;
   width: 80%;

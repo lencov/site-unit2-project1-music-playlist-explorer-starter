@@ -1,5 +1,20 @@
+import { handleLikeButtonAndCount } from './utils/utils.js';
 
 const span = document.getElementsByClassName("close")[0];
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayPlaylists();
+});
+
+// close modal
+span.onclick = function() {
+   document.getElementById("playlistModal").style.display = "none";
+}
+window.onclick = function(event) {
+   if (event.target == document.getElementById("playlistModal")) {
+      document.getElementById("playlistModal").style.display = "none";
+   }
+}
 
 function openModal(playlist) {
    console.log('openModal is being called');
@@ -10,6 +25,17 @@ function openModal(playlist) {
    
    const songList = document.getElementById('modalSongList');
    songList.innerHTML = "";
+
+    const likeButton = document.getElementById('modalLikeButton');
+    const likeCount = document.getElementById('modalLikeCount');
+
+    handleLikeButtonAndCount(likeButton, likeCount, playlist);
+
+    const shuffleButton = document.getElementById('shuffleButton');
+    shuffleButton.addEventListener("click", () => {
+        shuffleSongsinModal();
+    })
+
    playlist.songs.forEach(song => {
     const li = document.createElement('li');
     
@@ -33,16 +59,6 @@ function openModal(playlist) {
    });
 
    document.getElementById("playlistModal").style.display = "block";
-}
-
-// close modal
-span.onclick = function() {
-   document.getElementById("playlistModal").style.display = "none";
-}
-window.onclick = function(event) {
-   if (event.target == document.getElementById("playlistModal")) {
-      document.getElementById("playlistModal").style.display = "none";
-   }
 }
 
 function displayPlaylists(){
@@ -69,19 +85,12 @@ function displayPlaylists(){
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  displayPlaylists();
-});
-
-// create event listener for all playlist cards
-const cards = document.querySelectorAll('.card');
-cards.forEach( card => {
-    const id = parseInt(card.dataset.playlistId);
-    card.addEventListener('click', () => {
-        console.log(`opening modal with playlist at index ${id}`)
-        playlists.find(id )
-        openModal(playlists[index]);
-    })
-
-});
+function shuffleSongsinModal(){
+    const songList = document.getElementById("modalSongList");
+    const songs = Array.from(songList.children);
+    const shuffledSongs = songs.map( song => [Math.random(), song]).sort((a,b) => a[0] - b[0]);
+    const clenaedSongs = shuffledSongs.map(pair => pair[1]);
+    songList.innerHTML = '';
+    clenaedSongs.forEach(li => songList.appendChild(li));
+}
 
