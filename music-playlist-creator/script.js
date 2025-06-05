@@ -45,12 +45,41 @@ window.onclick = function(event) {
    }
 }
 
+function displayPlaylists(){
+    const container = document.querySelector('.playlist-cards');
+    container.innerHTML = "";
+
+    playlists.forEach( playlist => {
+        const card = document.createElement('div');
+        card.className = 'card'
+        card.dataset.playlistId= playlist.id;
+
+        card.innerHTML = `
+            <img src="${playlist.imageUrl}" alt="Playlist Cover" class="card-img">
+            <h3 class="card-title">${playlist.name}</h3>
+            <p class="card-author">by ${playlist.author}</p>
+            <p class="card-likes">42 likes</p>
+        `;
+    
+        card.addEventListener('click', () => {
+            openModal(playlist);
+        });
+
+        container.appendChild(card);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  displayPlaylists();
+});
+
 // create event listener for all playlist cards
 const cards = document.querySelectorAll('.card');
 cards.forEach( card => {
-    const index = parseInt(card.dataset.playlistIndex);
+    const id = parseInt(card.dataset.playlistId);
     card.addEventListener('click', () => {
-        console.log(`opening modal with playlist at index ${index}`)
+        console.log(`opening modal with playlist at index ${id}`)
+        playlists.find(id )
         openModal(playlists[index]);
     })
 
