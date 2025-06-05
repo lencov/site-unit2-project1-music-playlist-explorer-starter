@@ -71,13 +71,16 @@ footer {
 }
 
 .card {
-  cursor: pointer;
-  transition: transform 0.1s ease;
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: all 0.2s ease;
 }
 
 .card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
 .modal-overlay {
@@ -133,6 +136,17 @@ footer {
 }
 
 #modalSongList li {
-  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
   border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.song-title {
+  font-weight: bold;
+}
+
+.song-duration {
+  color: #888;
 }

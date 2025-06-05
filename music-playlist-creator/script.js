@@ -19,7 +19,7 @@ function openModal(playlist) {
 
     const artistSpan = document.createElement("span");
     artistSpan.className = "song-artist";
-    artistSpan.textContent = ` - ${song.artist}`;
+    artistSpan.textContent = ` By: ${song.artist}`;
 
     const durationSpan = document.createElement("span");
     durationSpan.className = "song-duration";
