@@ -19,22 +19,17 @@ function removeLike(playlistId){
 export function handleLikeButtonAndCount(likeButton, likeCount, playlist){
     const newButton = likeButton.cloneNode(true);
     likeButton.parentNode.replaceChild(newButton, likeButton);
+    newButton.classList.toggle("liked", playlist.likedByUser);
     likeCount.textContent = `${playlist.likeCount} Likes`;
-    if (playlist.likedByUser) {
-        newButton.textContent = 'Unlike';
-    } else {
-        newButton.textContent = 'Like';
-    }
 
     newButton.addEventListener("click", () => {
         console.log('pressed like button', playlist);
         if (playlist.likedByUser) {
             removeLike(playlist.id);
-            newButton.textContent = 'Like';
         } else {
             addLike(playlist.id);
-            newButton.textContent = 'Unlike';
         }
+        newButton.classList.toggle("liked", playlist.likedByUser);
         likeCount.textContent = `${playlist.likeCount} Likes`;
     });
 }

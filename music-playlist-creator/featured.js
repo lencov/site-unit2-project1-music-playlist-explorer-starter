@@ -1,4 +1,5 @@
 import { handleLikeButtonAndCount } from './utils/utils.js';
+import { defaultImage } from './constants/constants.js';
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,7 +12,7 @@ function displayFeaturedPlaylist(){
     const featuredPlaylist = playlists[randIndex];
 
     document.getElementById('featuredTitle').innerText = featuredPlaylist.name;
-    document.getElementById('featuredImage').src = featuredPlaylist.imageUrl;
+    document.getElementById('featuredImage').src = featuredPlaylist.imageUrl || defaultImage;
     document.getElementById('featuredAuthor').innerText = `By: ${featuredPlaylist.author}`;
     
     const songList = document.getElementById('featuredSongList');

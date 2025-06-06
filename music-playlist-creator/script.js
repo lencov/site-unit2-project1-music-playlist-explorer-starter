@@ -1,3 +1,4 @@
+import { defaultImage } from './constants/constants.js';
 import { handleLikeButtonAndCount } from './utils/utils.js';
 
 const span = document.getElementsByClassName("close")[0];
@@ -20,7 +21,7 @@ function openModal(playlist) {
    console.log('openModal is being called');
    console.log(playlist)
    document.getElementById('modalTitle').innerText = playlist.name;
-   document.getElementById('modalImage').src = playlist.imageUrl;
+   document.getElementById('modalImage').src = playlist.imageUrl || defaultImage;
    document.getElementById('modalAuthor').innerText = `By: ${playlist.author}`;
    
    const songList = document.getElementById('modalSongList');
@@ -71,7 +72,7 @@ function displayPlaylists(){
         card.dataset.playlistId= playlist.id;
 
         card.innerHTML = `
-            <img src="${playlist.imageUrl}" alt="Playlist Cover" class="card-img">
+            <img src="${playlist.imageUrl || defaultImage}" alt="Playlist Cover" onerror="this.onerror=null; this.src='assets/img/playlist.png';" class="card-img" class="card-img">
             <h3 class="card-title">${playlist.name}</h3>
             <p class="card-author">by ${playlist.author}</p>
             <p class="card-likes">42 likes</p>
