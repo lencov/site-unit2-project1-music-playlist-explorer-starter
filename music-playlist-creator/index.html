@@ -20,7 +20,7 @@
     </header>
     <div id="playlistModal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span id="playlistModalClose" class="close">&times;</span>
             <h1 id="modalTitle"></h1>
             <img id="modalImage" src="" alt="Playlist Cover">
             <p id="modalAuthor"></p>
@@ -30,6 +30,35 @@
             <button id="deleteButton">Delete Playlist</button>
             <span id="modalLikeButton" class="likeButton"> Like </span>
             <span id="modalLikeCount" class="likeCount">0 Likes</span>
+        </div>
+    </div>
+
+    <div id="playlistFormModal" class="modal-overlay">
+        <div class="modal-content">
+            <span id="formClose" class="close">&times;</span>
+            <h2 id="formTitle">Create Playlist</h2>
+            <form id="playlistForm">
+                <label for="playlistName"> Playlist Name: </label>
+                <input type="text" id="playlistName" name="playlistName" required>
+
+                <label for="playlistAuthor">Author:</label>
+                <input type="text" id="playlistAuthor" name="author" required>
+
+                <label for="playlistImage">Image URL:</label>
+                <input type="text" id="playlistImage" name="imageUrl">
+
+                  <div id="songListFields">
+                    <div class="song-entry">
+                        <input type="text" name="songTitle" placeholder="Song Title" required />
+                        <input type="text" name="songArtist" placeholder="Artist" required />
+                        <input type="text" name="songDuration" placeholder="Duration (e.g. 3:30)" required />
+                    </div>
+                </div>
+
+                <button type="button" id="addSongButton">➕ Add Song</button>
+
+                <button type="submit">Save Playlist</button>
+            </form>
         </div>
     </div>
 

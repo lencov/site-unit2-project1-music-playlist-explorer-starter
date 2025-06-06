@@ -1,4 +1,4 @@
-const playlists = [
+let playlists = [
   {
     id: 0,
     name: "Chill Beats",
@@ -101,3 +101,5 @@ const playlists = [
     ]
   }
 ];
+
+let playlistCount = 8;

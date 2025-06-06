@@ -7,7 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   displayPlaylists();
 });
 
-// close modal
+const createButton = document.getElementById("createButton");
+createButton.addEventListener('click', () => {
+    document.getElementById("playlistFormModal").style.display = "block";
+})
+
+// close modals
 span.onclick = function() {
    document.getElementById("playlistModal").style.display = "none";
 }
@@ -16,6 +21,11 @@ window.onclick = function(event) {
       document.getElementById("playlistModal").style.display = "none";
    }
 }
+const formCloseButton = document.getElementById("formClose");
+formCloseButton.onclick = function() {
+   document.getElementById("playlistFormModal").style.display = "none";
+}
+
 
 function openModal(playlist) {
    console.log('openModal is being called');
@@ -94,4 +104,62 @@ function shuffleSongsinModal(){
     songList.innerHTML = '';
     clenaedSongs.forEach(li => songList.appendChild(li));
 }
+
+function createNewPlaylist(name, author, imageUrl, songs){
+    const id = playlistCount
+    playlistCount += 1;
+
+    const newPlaylist = {
+        id: id,
+        name: name,
+        imageUrl: imageUrl,
+        author: author,
+        likeCount: 0,
+        likedByUser: false,
+        songs: songs
+    }
+
+    playlists.push(newPlaylist);
+
+    displayPlaylists();
+    document.getElementById("playlistFormModal").style.display = "none";
+}
+
+document.getElementById("addSongButton").addEventListener("click", () => {
+  const container = document.getElementById("songListFields");
+
+  const songDiv = document.createElement("div");
+  songDiv.classList.add("song-entry");
+
+  songDiv.innerHTML = `
+    <input type="text" name="songTitle" placeholder="Song Title" required />
+    <input type="text" name="songArtist" placeholder="Artist" required />
+    <input type="text" name="songDuration" placeholder="Duration (e.g. 3:30)" required />
+  `;
+
+  container.appendChild(songDiv);
+});
+
+document.getElementById("playlistForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const playlistName = e.target.playlistName.value;
+    const author = e.target.author.value;
+    const image = e.target.imageUrl.value
+  
+    const songEntries = document.querySelectorAll(".song-entry");
+    const songs = [];
+  
+    songEntries.forEach(entry => {
+      const title = entry.querySelector('[name="songTitle"]').value.trim;
+      const artist = entry.querySelector('[name="songArtist"]').value.trim;
+      const duration = entry.querySelector('[name="songDuration"]').value.trim;
+  
+      songs.push({ title, artist, duration });
+    });
+
+    createNewPlaylist(playlistName, author, image, songs);
+
+    document.getElementById("playlistFormModal").style.display = "none";
+});
 
