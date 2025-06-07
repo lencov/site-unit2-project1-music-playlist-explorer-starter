@@ -9,6 +9,13 @@ const playlistNameInp   = document.getElementById('playlistName');
 const playlistAuthorInp = document.getElementById('playlistAuthor');
 const playlistImageInp  = document.getElementById('playlistImage');
 
+let displayedPlaylists = playlists.slice();
+
+const searchInput = document.getElementById("searchInput");
+const searchSubmit = document.getElementById("searchSubmit");
+const searchClear = document.getElementById("searchClear");
+const sortDropdown = document.getElementById("sortDropdown");
+
 document.addEventListener("DOMContentLoaded", () => {
   displayPlaylists();
 });
@@ -101,8 +108,7 @@ function openModal(playlist) {
 function displayPlaylists(){
     const container = document.querySelector('.playlist-cards');
     container.innerHTML = "";
-
-    playlists.forEach( playlist => {
+    displayedPlaylists.forEach( playlist => {
         const card = buildCard(playlist);
         container.appendChild(card);
     });
@@ -113,13 +119,17 @@ function buildCard(playlist){
     card.className = 'card'
     card.dataset.id= playlist.id;
     card.innerHTML = `
-      <img src="${playlist.imageUrl || defaultImage}" class="card-img">
-      <h3>${playlist.name}</h3>
-      <p class="card-author">by ${playlist.author}</p>
-      <p class="card-likes">${playlist.likeCount} likes</p>
-      <span class="likeButton ${playlist.likedByUser ? 'liked' : ''}"></span>
-      <button class="edit-btn">Edit</button>
-      <button class="del-btn">Delete</button>`;
+        <img src="${playlist.imageUrl || defaultImage}" class="card-img">
+        <h3>${playlist.name}</h3>
+        <p class="card-author">by ${playlist.author}</p>
+        <p class="card-likes">${playlist.likeCount} likes</p>
+        <div class="card-action-row">
+            <span class="likeButton ${playlist.likedByUser ? 'liked' : ''}"></span>
+            <button class="edit-btn">Edit</button>
+            <button class="del-btn">Delete</button>
+        </div>
+    `;
+
 
     const img = card.querySelector('.card-img');
         img.onerror = () => {
@@ -144,6 +154,7 @@ function buildCard(playlist){
     card.querySelector('.del-btn').addEventListener('click', e => {
         e.stopPropagation();
         deletePlaylist(playlist.id, playlists);
+        displayedPlaylists = playlists.slice();
         displayPlaylists();
     });
 
@@ -210,6 +221,7 @@ function createNewPlaylist(name, author, imageUrl, songs){
 
     playlists.push(newPlaylist);
 
+    displayedPlaylists = playlists.slice();
     displayPlaylists();
     document.getElementById("playlistFormModal").style.display = "none";
 }
@@ -271,6 +283,7 @@ document.getElementById("playlistForm").addEventListener("submit", e => {
     }
 
     playlistFormModal.style.display = 'none';
+    displayedPlaylists = playlists.slice();
     displayPlaylists();
 
     playlistNameInp.value   = '';
@@ -303,5 +316,46 @@ function collectFormData() {
 const modalDeleteBtn = document.getElementById("modalDeleteButton");
 modalDeleteBtn.addEventListener("click", () => {
     deletePlaylist(currentPlaylist.id, playlists);
+    displayedPlaylists = playlists.slice();
+    displayPlaylists();
+});
+
+function filterPlaylists(query) {
+    if (!query.trim()) {
+        displayedPlaylists = playlists.slice();
+        return;
+    }
+    const q = query.trim().toLowerCase();
+    displayedPlaylists = playlists.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.author.toLowerCase().includes(q)
+    );
+}
+
+searchSubmit.addEventListener('click', () => {
+    filterPlaylists(searchInput.value);
+    displayPlaylists();
+});
+
+searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        filterPlaylists(searchInput.value);
+        displayPlaylists();
+    }
+});
+
+searchClear.addEventListener('click', () => {
+    searchInput.value = "";
+    displayedPlaylists = playlists.slice();
+    displayPlaylists();
+});
+
+sortDropdown.addEventListener('change', () => {
+    const val = sortDropdown.value;
+    if (val === "name") {
+        displayedPlaylists.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (val === "likes") {
+        displayedPlaylists.sort((a, b) => b.likeCount - a.likeCount);
+    }
     displayPlaylists();
 });

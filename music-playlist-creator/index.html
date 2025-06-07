@@ -12,10 +12,19 @@
 <body>
     <header>
        <h1>Music Playlist Explorer</h1>
-       <nav>
+        <nav>
             <button onclick="location.href='index.html'">Home</button>
             <button onclick="location.href='featured.html'">Featured</button>
-            <button id="searchButton">Search</button>
+            <div class="nav-search-group">
+                <input id="searchInput" type="text" placeholder="Search by name or author..." />
+                <button id="searchSubmit" title="Search">&#128269;</button>
+                <button id="searchClear" title="Clear Search">&#10006;</button>
+                <select id="sortDropdown" title="Sort playlists">
+                    <option value="">Sort</option>
+                    <option value="name">Name (A-Z)</option>
+                    <option value="likes">Likes (Desc)</option>
+                </select>
+            </div>
             <button id="createButton">New Playlist</button>
         </nav>
     </header>
