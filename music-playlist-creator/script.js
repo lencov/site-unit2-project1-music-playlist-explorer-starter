@@ -216,7 +216,8 @@ function createNewPlaylist(name, author, imageUrl, songs){
         author: author,
         likeCount: 0,
         likedByUser: false,
-        songs: songs
+        songs: songs,
+        createdAt: Date.now(),
     }
 
     playlists.push(newPlaylist);
@@ -356,6 +357,8 @@ sortDropdown.addEventListener('change', () => {
         displayedPlaylists.sort((a, b) => a.name.localeCompare(b.name));
     } else if (val === "likes") {
         displayedPlaylists.sort((a, b) => b.likeCount - a.likeCount);
+    } else if (val === "date") {
+    displayedPlaylists.sort((a, b) => b.createdAt - a.createdAt);
     }
     displayPlaylists();
 });

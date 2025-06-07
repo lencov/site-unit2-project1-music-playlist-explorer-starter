@@ -6,6 +6,7 @@ let playlists = [
     author: "LoFi Girl",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717603200000, // 2024-06-06
     songs: [
       { title: "Rainy Nights", artist: "Nujabes", duration: "3:20" },
       { title: "Ocean Breeze", artist: "Idealism", duration: "2:45" }
@@ -18,6 +19,7 @@ let playlists = [
     author: "Beast Mode",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717516800000, // 2024-06-05
     songs: [
       { title: "Push It", artist: "Salt-N-Pepa", duration: "3:30" },
       { title: "Eye of the Tiger", artist: "Survivor", duration: "4:05" }
@@ -30,6 +32,7 @@ let playlists = [
     author: "Smooth Sounds",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717430400000, // 2024-06-04
     songs: [
       { title: "Blue in Green", artist: "Miles Davis", duration: "5:37" },
       { title: "Take Five", artist: "Dave Brubeck", duration: "5:24" }
@@ -42,6 +45,7 @@ let playlists = [
     author: "808 Selecta",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717344000000, // 2024-06-03
     songs: [
       { title: "Sweet Lady of Waiahole", artist: "Kaʻau Crater Boys", duration: "4:12" },
       { title: "Ehu Girl", artist: "Kolohe Kai", duration: "3:50" },
@@ -55,6 +59,7 @@ let playlists = [
     author: "Soul Flow",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717257600000, // 2024-06-02
     songs: [
       { title: "Can We Talk", artist: "Tevin Campbell", duration: "4:45" },
       { title: "So Anxious", artist: "Ginuwine", duration: "4:10" },
@@ -68,6 +73,7 @@ let playlists = [
     author: "Vinyl Legends",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717171200000, // 2024-06-01
     songs: [
       { title: "Bohemian Rhapsody", artist: "Queen", duration: "5:55" },
       { title: "Hotel California", artist: "Eagles", duration: "6:30" },
@@ -81,6 +87,7 @@ let playlists = [
     author: "Maestro Mix",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1717084800000, // 2024-05-31
     songs: [
       { title: "Clair de Lune", artist: "Claude Debussy", duration: "5:12" },
       { title: "Nocturne Op.9 No.2", artist: "Frédéric Chopin", duration: "4:30" },
@@ -94,6 +101,7 @@ let playlists = [
     author: "Alt Vibes",
     likeCount: 0,
     likedByUser: false,
+    createdAt: 1716998400000, // 2024-05-30
     songs: [
       { title: "Youth", artist: "Daughter", duration: "4:15" },
       { title: "Home", artist: "Edward Sharpe & The Magnetic Zeros", duration: "5:07" },
