@@ -26,7 +26,7 @@ let playlists = [
   {
     id: 2,
     name: "Jazz Essentials",
-    imageUrl: "assets/img/playlist.png",
+    imageUrl: "https://fastly.picsum.photos/id/17/2500/1667.jpg?hmac=HD-JrnNUZjFiP2UZQvWcKrgLoC_pc_ouUSWv8kHsJJY",
     author: "Smooth Sounds",
     likeCount: 0,
     likedByUser: false,

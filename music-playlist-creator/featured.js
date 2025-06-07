@@ -1,4 +1,3 @@
-import { handleLikeButtonAndCount } from './utils/utils.js';
 import { defaultImage } from './constants/constants.js';
 
 
@@ -17,11 +16,6 @@ function displayFeaturedPlaylist(){
     
     const songList = document.getElementById('featuredSongList');
     songList.innerHTML = "";
-
-    const likeButton = document.getElementById('featuredLikeButton');
-    const likeCount = document.getElementById('featuredLikeCount');
-
-    handleLikeButtonAndCount(likeButton, likeCount, featuredPlaylist);
 
     featuredPlaylist.songs.forEach(song => {
         const li = document.createElement('li');

@@ -1,35 +1,36 @@
-function addLike(playlistId){
-    const playlist = playlists.find( p => playlistId === p.id);
-    if(playlist.likedByUser === true){
-        throw new Error('Playlist is already liked by this user. Cannot add new like');
-    }
+export function addLike(playlist){
     playlist.likeCount += 1;
     playlist.likedByUser = true;
 }
 
-function removeLike(playlistId){
-    const playlist = playlists.find( p => playlistId === p.id);
-    if(playlist.likedByUser === false){
-        throw new Error('Playlist is not already liked by this user. Cannot remove like');
-    }
+export function removeLike(playlist){
     playlist.likeCount -= 1;
     playlist.likedByUser = false;
 }
 
-export function handleLikeButtonAndCount(likeButton, likeCount, playlist){
-    const newButton = likeButton.cloneNode(true);
-    likeButton.parentNode.replaceChild(newButton, likeButton);
-    newButton.classList.toggle("liked", playlist.likedByUser);
-    likeCount.textContent = `${playlist.likeCount} Likes`;
-
-    newButton.addEventListener("click", () => {
-        console.log('pressed like button', playlist);
-        if (playlist.likedByUser) {
-            removeLike(playlist.id);
-        } else {
-            addLike(playlist.id);
-        }
-        newButton.classList.toggle("liked", playlist.likedByUser);
-        likeCount.textContent = `${playlist.likeCount} Likes`;
-    });
+export function syncLikeOnCard(playlist) {
+  const card = document.querySelector(`.card[data-id="${playlist.id}"]`);
+  if (card) {
+    const text = card.querySelector('.card-likes');
+    if(text){
+        text.textContent = `${playlist.likeCount} likes`;
+    }
+    const heart = card.querySelector('.likeButton');
+    if(heart){
+        heart.classList.toggle('liked', playlist.likedByUser);
+    }   
+  }
 }
+
+export function deletePlaylist(id, playlists) {
+  const index = playlists.findIndex(p => p.id === id);
+  if (index !== -1) playlists.splice(index, 1);
+}
+
+export function applyEdit(id, data, playlists) {
+  const index = playlists.findIndex(p => p.id === id);
+  if (index !== -1){
+    playlists[index] = { ...playlists[index], ...data };
+  }
+}
+
